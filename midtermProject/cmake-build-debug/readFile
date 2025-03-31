@@ -1,0 +1,93 @@
+/*****************************************************************/ /**
+ * \file   main.cpp
+ * \brief
+ *
+ * \author Cheng-Jui,Kuo. (B11115063),
+ * \date   2025/3/14~
+ *********************************************************************/
+#include <iostream>
+#include <iomanip>
+#include <vector>
+#include "FundamentalFunction.h"
+#include <fstream>
+
+using namespace std;
+
+// void storeFile(int, int, bool);
+
+void readFile(const string &fileName);
+
+void testReadFile(int, int, bool);
+
+char board[8][8];
+
+int main() {
+    for (auto &i: board) {
+        for (char &j: i) {
+            j = 's';
+        }
+    }
+    board[3][3] = 'b';
+    board[3][4] = 'w';
+    board[4][4] = 'b';
+    board[4][3] = 'w';
+
+    readFile("test.txt");
+    for (auto &i: board) {
+        for (char &j: i) {
+            cout << j;
+        }
+        cout << endl;
+    }
+    // FundamentalFunction newGame;
+    // newGame.initialize();
+    // newGame.display();
+    // const string fileName = "test.txt";
+    // newGame.readFile(fileName);
+    // newGame.display();
+    return 0;
+}
+
+/*void storeFile(int x, int y, bool whiteTurn) {
+    ofstream file;
+    string fileName = "hello.txt";
+    string line;
+    file.open(fileName, ios::app);
+    if (file.is_open()) {
+        file << "{" << << x << " " << y << "}" << endl;
+    }
+    else {
+        cout << "File could not be opened" << endl;
+    }
+    file.close();
+}
+*/
+
+
+void readFile(const string &fileName) {
+    ifstream file;
+    struct pos {
+        int x;
+        int y;
+        bool isWhiteTurn;
+    };
+    file.open(fileName);
+    if (file.is_open()) {
+        vector<pos> position;
+        string line;
+        while (getline(file, line)) {
+            cout << line << endl;
+            // wait chan alen format
+            testReadFile((line[1] - '0'), (line[2] - '0'), (line[0] == 'W') ? true : false);
+        }
+    }
+    else {
+        cout << "Error opening file " << fileName << endl;
+    }
+    file.close();
+}
+
+void testReadFile(int x, int y, bool isWhiteTurn) {
+    board[y][x] = (isWhiteTurn ? 'w' : 'b');
+}
+// 待修(等alan 的格式以及到時候如何call function)
