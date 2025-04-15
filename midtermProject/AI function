@@ -1,0 +1,57 @@
+// the following program is for AI play chess
+
+
+void AIPlayChess()
+{
+    struct AIPlaySpace {
+        int x;
+        int y;
+        int distanceWithEdge;
+    };
+    AIPlaySpace choose[64] = { 0 };
+    int chooseLength = 0;
+    // AI is white
+    showPlayPlace(true);
+
+    for (int i = 0; i < 8; i++)
+    {
+        for (int j = 0; j < 8; j++)
+        {
+            if (board[i][j] == 'a')
+            {
+                int minI = i;
+                if ((8 - i) < minI)
+                {
+                    minI = (8 - i);
+                }
+                int minJ = j;
+                if ((8 - j) < minJ)
+                {
+                    minJ = (8 - j);
+                }
+                if (minI < minJ) {
+                    choose[chooseLength].distanceWithEdge = minI;
+                }
+                else {
+                    choose[chooseLength].distanceWithEdge = minJ;
+                }
+                choose[chooseLength].x = i;
+                choose[chooseLength].y = j;
+                chooseLength++;
+            }
+        }
+    }
+    for (int i = 0; i < chooseLength; i++)
+    {
+        for (int j = 0; j < chooseLength; j++)
+        {
+            if (choose[i].distanceWithEdge > choose[j].distanceWithEdge)
+            {
+                int temp = choose[i].distanceWithEdge;
+                choose[i].distanceWithEdge = choose[j].distanceWithEdge;
+                choose[j].distanceWithEdge = temp;
+            }
+        }
+    }
+    board[choose[0].x][choose[0].y] = 'w';
+}
