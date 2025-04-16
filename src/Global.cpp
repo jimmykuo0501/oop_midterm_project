@@ -15,7 +15,7 @@ bool player = false;
 
 // Game Setting
 const float TRANSITION_DURATION = 0.5f; // seconds
-unsigned WINDOW_WIDTH = 800;
+unsigned WINDOW_WIDTH = 1280;
 unsigned WINDOW_HEIGHT = 600;
 const std::string GAME_TITLE = "Reversi Game";
 

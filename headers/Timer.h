@@ -27,13 +27,13 @@ public:
         // Initialize timer text
         timerText.setFont(font);
         timerText.setCharacterSize(24);
-        timerText.setFillColor(sf::Color::White);
+        timerText.setFillColor(sf::Color::Black);
         timerText.setString("30s");
 
         // Initialize chances text
         chancesText.setFont(font);
         chancesText.setCharacterSize(20);
-        chancesText.setFillColor(sf::Color::White);
+        chancesText.setFillColor(sf::Color::Black);
         chancesText.setString("Chances: 3");
 
         // Default position

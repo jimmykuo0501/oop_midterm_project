@@ -31,12 +31,12 @@ void GameScreen::init() {
     // Set up player text
     player1Text.setString(player1Name + " (Black)");
     player1Text.setCharacterSize(20);
-    player1Text.setFillColor(sf::Color::White);
+    player1Text.setFillColor(sf::Color::Black);
     player1Text.setPosition({50.0f, 100.0f});
 
     player2Text.setString(player2Name + " (White)");
     player2Text.setCharacterSize(20);
-    player2Text.setFillColor(sf::Color::White);
+    player2Text.setFillColor(sf::Color::Black);
     player2Text.setPosition({WINDOW_WIDTH - 250.0f, 100.0f});
 
     // Set up timer positions
@@ -50,13 +50,13 @@ void GameScreen::init() {
     // Set up score text
     scoreText.setString("Score: " + std::to_string(player1Score) + " - " + std::to_string(player2Score));
     scoreText.setCharacterSize(24);
-    scoreText.setFillColor(sf::Color::White);
+    scoreText.setFillColor(sf::Color::Black);
     scoreText.setPosition({WINDOW_WIDTH / 2.0f - 60.0f, 100.0f});
 
     // Set up current player text
     currentPlayerText.setString("Current Turn: Black");
     currentPlayerText.setCharacterSize(20);
-    currentPlayerText.setFillColor(sf::Color::White);
+    currentPlayerText.setFillColor(sf::Color::Black);
     currentPlayerText.setPosition({WINDOW_WIDTH / 2.0f - 80.0f, 130.0f});
 
     // Set up game board

@@ -14,10 +14,10 @@ void ReversiGame::initResources() const {
     resources->loadFont("main", FONT_PATH + "main_font_.ttf");
 
     // Load textures
-    resources->loadTexture("splash", TEXTURE_PATH + "splash_bg.jpg");
-    resources->loadTexture("menu_bg", TEXTURE_PATH + "menu_bg.jpg");
-    resources->loadTexture("game_bg", TEXTURE_PATH + "game_bg.jpg");
-    resources->loadTexture("victory_bg", TEXTURE_PATH + "victory_bg.jpg");
+    resources->loadTexture("splash", TEXTURE_PATH + "bg.jpg");
+    resources->loadTexture("menu_bg", TEXTURE_PATH + "bg.jpg");
+    resources->loadTexture("game_bg", TEXTURE_PATH + "bg.jpg");
+    resources->loadTexture("victory_bg", TEXTURE_PATH + "bg.jpg");
 
     // Load sounds
     resources->loadSoundBuffer("click", SOUND_PATH + "click.wav");

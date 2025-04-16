@@ -69,7 +69,7 @@ public:
             "Controls:\n"
             "- Use the mouse to place your pieces\n"
             "- Press the Undo button to take back a move\n\n"
-            "© 2025 All Rights Reserved"
+            "2025 All Rights Reserved"
         );
         aboutText.setCharacterSize(20);
         aboutText.setFillColor(sf::Color::White);
