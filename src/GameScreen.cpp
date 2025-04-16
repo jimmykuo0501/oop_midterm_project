@@ -171,6 +171,7 @@ void GameScreen::checkGameOver() {
         if (!otherPlayerHasValidMoves) {
             // Both players have no valid moves, game is over
             endGame();
+            return; // Add this return to prevent further execution
         } else {
             // Other player can move, update UI
             currentPlayerText.setString("Current Turn: " + std::string(isWhiteTurn ? "White" : "Black"));
@@ -613,6 +614,25 @@ void GameScreen::makeAIMove() {
         player1Timer.setPlayerTurn(true);
         player2Timer.setPlayerTurn(false);
         updateBoardPieces();
+
+        // Check if the human player also has no valid moves - would be game over
+        bool humanHasValidMoves = false;
+        for (auto &y: gameLogic.board) {
+            for (char x: y) {
+                if (x == 'a') {
+                    humanHasValidMoves = true;
+                    break;
+                }
+            }
+            if (humanHasValidMoves)
+                break;
+        }
+
+        if (!humanHasValidMoves) {
+            // Both players have no moves, game over
+            endGame();
+        }
+
         return;
     }
     try {
@@ -652,6 +672,9 @@ void GameScreen::makeAIMove() {
 
             // 更新分數
             updateScores();
+
+            // Check for game over after AI move
+            checkGameOver();
         } else {
             // AI 返回的移動無效，切換到人類玩家
             isWhiteTurn = false;
@@ -660,6 +683,9 @@ void GameScreen::makeAIMove() {
             player1Timer.setPlayerTurn(true);
             player2Timer.setPlayerTurn(false);
             updateBoardPieces();
+
+            // Check for game over when AI has no valid moves
+            checkGameOver();
         }
     } catch (...) {
         // 捕獲任何可能的異常
@@ -669,5 +695,8 @@ void GameScreen::makeAIMove() {
         player1Timer.setPlayerTurn(true);
         player2Timer.setPlayerTurn(false);
         updateBoardPieces();
+
+        // Check for game over on exception
+        checkGameOver();
     }
 }
