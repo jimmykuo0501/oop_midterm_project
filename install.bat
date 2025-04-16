@@ -10,11 +10,28 @@ if not exist build (
 )
 cd build
 
-:: 下載並解壓縮CMake
+:: 下載CMake
 echo Downloading CMake...
 curl -L -o cmake.zip https://github.com/Kitware/CMake/releases/download/v3.31.7/cmake-3.31.7-windows-x86_64.zip
-echo Extracting CMake...
-powershell -command "Expand-Archive -Force -Path cmake.zip -DestinationPath ."
+
+:: 檢查並使用7z解壓縮CMake
+echo Checking for 7-Zip...
+set "ZIP_PATH=C:\Program Files\7-Zip\7z.exe"
+
+if exist "%ZIP_PATH%" (
+    echo 7-Zip found at default location, using it for extraction...
+    "%ZIP_PATH%" x cmake.zip -y
+) else (
+    echo Checking if 7z is in PATH...
+    where 7z >nul 2>&1
+    if %ERRORLEVEL% EQU 0 (
+        echo 7z found in PATH, using it for extraction...
+        7z x cmake.zip -y
+    ) else (
+        echo 7-Zip not found, using PowerShell for extraction...
+        powershell -command "Expand-Archive -Force -Path cmake.zip -DestinationPath ."
+    )
+)
 echo CMake extracted successfully.
 
 :: 使用CMake初始化和編譯專案
