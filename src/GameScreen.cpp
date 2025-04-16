@@ -111,6 +111,11 @@ void GameScreen::handleInput(sf::Event event) {
         return;
     }
 
+    // Prevent board interaction while AI is thinking
+    if (vsComputer && isWhiteTurn && aiThinking) {
+        return;
+    }
+
     sf::Vector2i mousePos = sf::Mouse::getPosition(window);
 
     // Calculate board coordinates
